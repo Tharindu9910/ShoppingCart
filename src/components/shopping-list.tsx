@@ -4,17 +4,25 @@ import * as React from "react";
 import Header from "./header";
 import { fetchShoppingList } from "../api-client";
 
-// interface ShoppingListProps {
-//     initialitems: Array<{
-//         id: number;
-//         name: string;
-//         categoryName: string;
-//     }>;
-//     onItemClick: () => void;
-// }
+interface ShoppingListProps {
+    initialItems: Array<{
+        id: number;
+        name: string;
+        price: string;
+    }>;
+}
 
 
-const ShoppingList = ({ items }) => {
+const ShoppingList: React.FC<ShoppingListProps>  = ({ initialItems }) => {
+    const [items, setItems] = useState(initialItems?? []);
+
+    useEffect(() => {
+        if (!initialItems) {
+            fetchShoppingList().then((items) => {
+                setItems(items);
+            });
+        }
+    }, [initialItems]);
 
     return (
         <>
