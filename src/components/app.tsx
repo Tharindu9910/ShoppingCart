@@ -1,12 +1,13 @@
+import React,{useEffect} from "react";
 import Header from "./header";
 import ShoppingList from "./shopping-list";
 
 
-const App = ({ initialData }) => {
+const App: React.FC = () => {
     return (
         <>
             <div className="container"><Header message="StartShopping.." /></div>
-            <ShoppingList initialItems={initialData.items}/>
+            <ShoppingList/>
         </>
     );
 

@@ -14,13 +14,16 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "immer": "^10.1.1",
+    "lucide-react": "^0.400.0",
     "mongodb": "^6.8.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.2",
     "webpack": "^5.92.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^7.14.1",

@@ -3,17 +3,10 @@ import App from "../components/app";
 import { fetchShoppingList } from "../api-client";
 
 const serverRender = async (req) => {
-    //const { contestId } = req.params;
+    const initialData =  { items: await fetchShoppingList()};
 
-    const initialData = 
-    //contestId
-       // ? { currentContest: await fetchContest(contestId) }: 
-       { items: await fetchShoppingList()};
-
-    const initialMarkup = ReactDOMServer.renderToString(
-        <App initialData={initialData} />
-    );
-    return { initialMarkup, initialData };
+    
+    return { initialData };
 };
 
 export default serverRender;

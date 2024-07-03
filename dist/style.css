@@ -147,3 +147,11 @@ form button {
   margin: 2rem auto;
   text-align: center;
 }
+
+.shoppingCart{
+  padding-right: 2%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; 
+  height: 100%; 
+}
