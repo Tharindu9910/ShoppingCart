@@ -1,6 +1,5 @@
 import { StateCreator, create } from 'zustand';
 import { fetchShoppingList } from '../api-client';
-import { Double } from 'mongodb';
 
 export type Item = {
   id: string;
@@ -76,7 +75,7 @@ CartSlice,
       set((state) => {
         state.total = total;
       }),
-    reset: () => set((state) => state.shoppingCart = []),
+    reset: () => set(() => initailState),
 
 });
 

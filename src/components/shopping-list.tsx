@@ -2,8 +2,8 @@ import ContestPreview from "./list-preview";
 import { useEffect, useState } from "react";
 import * as React from "react";
 import { useStore } from "../store/store";
-import { CircleX, ShoppingBasketIcon } from "lucide-react";
 import { useShallow } from "zustand/react/shallow";
+import Header from "./header";
 
 
 
@@ -30,16 +30,8 @@ const ShoppingList: React.FC = () => {
 
     return (
         <>
-            
-            {/* <button onClick={reset} variant="destructive" size="icon">
-                <CircleX />
-            </button> */}
-            <div className="shoppingCart">
-                <button size="icon">
-                    <ShoppingBasketIcon />
-                </button>
-            </div>
             <div className="contest-list">
+             <Header message="Start Shopping.." /> 
                 {testData.map((item) => {
                     return (<ContestPreview
                         key={item.id}
