@@ -1,5 +1,5 @@
 import { StateCreator, create } from 'zustand';
-import { addCartItems, fetchShoppingList } from '../api-client';
+import { addCartItems, deleteAllCartItems, deleteCartItem, fetchShoppingList, updateItemCount } from '../api-client';
 import { CartItem, Item } from '../types/shopping-cart';
 
 
@@ -7,7 +7,7 @@ import { CartItem, Item } from '../types/shopping-cart';
 export type CartSlice = {
   loading: boolean;
   error: Error | null;
-  testData: Array<Item>;
+  shoppingList: Array<Item>;
   shoppingCart: Array<CartItem> ;
   total: number;
   fetchData: () => Promise<void>;
@@ -22,7 +22,7 @@ export type CartSlice = {
 const initailState ={
   loading: false,
   error: null,
-  testData: [],
+  shoppingList: [],
   shoppingCart: [],
   total: 0,
 }
@@ -34,8 +34,8 @@ CartSlice,
   fetchData: async () => {
     set({ loading: true, error: null });
     try {
-      const data = await fetchShoppingList(); // API client function
-      set({ testData: data, loading: false });
+      const data = await fetchShoppingList();  //API call
+      set({ shoppingList: data, loading: false });
     } catch (error) {
       set({ error: error, loading: false });
     }
@@ -44,7 +44,7 @@ CartSlice,
     const cartItem: CartItem = { ...item, count: 1 };
     set((state) => ({
       shoppingCart: [...state.shoppingCart, cartItem]}));
-      addCartItems(cartItem.id,cartItem.name,cartItem.price,cartItem.count);
+      addCartItems(cartItem.id,cartItem.name,cartItem.price,cartItem.count); //API call
     },
     
   removeItemFromCart: (item: CartItem) => set((state) => ({ shoppingCart: [...state.shoppingCart, item], })),
@@ -55,19 +55,22 @@ CartSlice,
       const founditem = state.shoppingCart.find((item) => item.id === itemId);
       if (founditem) {
         founditem.count += 1;
+        updateItemCount(founditem.id, founditem.count);//API call
       }
     })),
     decQty: (itemId) =>
       set(((state) => {
         const foundIndex = state.shoppingCart.findIndex(
-          (product) => product.id === itemId
+          (item) => item.id === itemId
         );
   
         if (foundIndex !== -1) {
           if (state.shoppingCart[foundIndex].count === 1) {
             state.shoppingCart.splice(foundIndex, 1);
+            deleteCartItem(itemId); //API call
           } else {
             state.shoppingCart[foundIndex].count -= 1;
+            updateItemCount(itemId, state.shoppingCart[foundIndex].count);//API call
           }
         }
       })),
@@ -75,7 +78,7 @@ CartSlice,
       set((state) => {
         state.total = total;
       }),
-    reset: () => set(() => initailState),
+    reset:()=>{deleteAllCartItems(); set(() => initailState);} //API call 
 
 });
 

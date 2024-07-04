@@ -8,10 +8,10 @@ import Header from "./header";
 
 
 const ShoppingList: React.FC = () => {
-    const { loading, error, testData, fetchData, reset } = useStore(useShallow((state) => ({
+    const { loading, error, shoppingList, fetchData, reset } = useStore(useShallow((state) => ({
         loading: state.loading,
         error: state.error,
-        testData: state.testData,
+        shoppingList: state.shoppingList,
         fetchData: state.fetchData,
         reset: state.reset,
     })));
@@ -32,7 +32,7 @@ const ShoppingList: React.FC = () => {
         <>
             <div className="contest-list">
              <Header message="Start Shopping.." /> 
-                {testData.map((item) => {
+                {shoppingList.map((item) => {
                     return (<ContestPreview
                         key={item.id}
                         item={item}

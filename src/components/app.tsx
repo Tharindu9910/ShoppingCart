@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ShoppingList from "./shopping-list";
-import { ShoppingBasketIcon, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import MyShoppingCart from "./shopping-cart";
 
 const App: React.FC = () => {
@@ -9,14 +9,14 @@ const App: React.FC = () => {
     useEffect(() => {
         window.history.replaceState({ page }, '');
 
-        // Handle the back/forward navigation
+
         const handlePopState = (event) => {
             if (event.state && event.state.page) {
                 setPage(event.state.page);
             }
         }; window.addEventListener('popstate', handlePopState);
 
-        // Cleanup the event listener on unmount
+
         return () => {
             window.removeEventListener('popstate', handlePopState);
         };
@@ -42,7 +42,6 @@ const App: React.FC = () => {
         <>
             <div className="container">
                 <div className="navigationButtons">
-                    {/* <button onClick={() => navigate("shoppingList")}>Shopping List</button> */}
                     {page==="shoppingList"? (<div className="shoppingCart" onClick={() => navigate("shoppingCart")}>
                         <button size="icon">
                             <ShoppingCart/>

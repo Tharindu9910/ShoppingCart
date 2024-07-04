@@ -35,18 +35,6 @@ const MyShoppingCart: React.FC = () => {
                     <strong>Total Price: ${total.toFixed(2)}</strong>
                 </div>
             </div>
-            <div className="button">
-                <button onClick={reset}>Checkout</button>
-            </div>
-            {/* <div className="contest-list"> */}
-            {/* <Header message="StartShopping.." /> */}
-            {/* {shoppingCart.map((item) => {
-                    return (<div className="list-preview link">
-                        <h2 className="name">{item.name}</h2>
-                        <p className="price">${item.price}</p>
-                        
-                      </div>);
-                })}</div> */}
         </>
 
     );
