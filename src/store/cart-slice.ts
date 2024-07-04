@@ -1,12 +1,8 @@
 import { StateCreator, create } from 'zustand';
-import { fetchShoppingList } from '../api-client';
+import { addCartItems, fetchShoppingList } from '../api-client';
+import { CartItem, Item } from '../types/shopping-cart';
 
-export type Item = {
-  id: string;
-  name: string;
-  price: number;
-}
-type CartItem = Item & {count: number;}
+
 
 export type CartSlice = {
   loading: boolean;
@@ -44,9 +40,13 @@ CartSlice,
       set({ error: error, loading: false });
     }
   },
-  addItemToCart: (item: CartItem) => 
+  addItemToCart: (item: Item) => {
+    const cartItem: CartItem = { ...item, count: 1 };
     set((state) => ({
-      shoppingCart: [...state.shoppingCart, item],count:1 })),
+      shoppingCart: [...state.shoppingCart, cartItem]}));
+      addCartItems(cartItem.id,cartItem.name,cartItem.price,cartItem.count);
+    },
+    
   removeItemFromCart: (item: CartItem) => set((state) => ({ shoppingCart: [...state.shoppingCart, item], })),
   getProductById: (itemId) =>
 		get().shoppingCart.find((item) => item.id === itemId),

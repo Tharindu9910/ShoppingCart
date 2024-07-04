@@ -27,6 +27,23 @@ router.get('/shopping_list', async (req, res) => {
  
 });//get the data from mongodb
 
+router.post('/shopping_cart', async (req, res) => {
+    try {
+        const client = await connectClient();
+        const newItem = {
+            id: req.body.id,
+            name: req.body.name,
+            price: req.body.price,
+            count: req.body.count,
+          };
+        await client.collection("shopping_cart").insertOne(newItem);
+        res.status(201).send({ message: 'Item added successfully', newItem });
+    } catch (error) {
+        console.error('Error fetching items:', error);
+        res.status(500).send('Server error');
+    }
+ 
+});//add the data to mongodb
 
 
 export default router;
