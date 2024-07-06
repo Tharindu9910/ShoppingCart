@@ -27,6 +27,12 @@ Run the following command in your terminal:
 ```bash
   npm install
 ```
+###### Run with Docker:
+
+```bash
+  docker-compose build
+  docker-compose up
+```
 ###### Start the server:
 ```bash
   npm run dev:server 
