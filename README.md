@@ -8,7 +8,7 @@ Entry project to MERN Stack
 - **Main Language:** Typescript with ES6
 - **State Management:** Zustand.
 - **Used:** WebPack for bundling, Docker for Packaging, MongoDB compass for GUI
-- **Running on:** HOST: localhost PORT: 3000 
+- **Listening at:** HOST: localhost PORT: 3000 
 
 Implemented CRUD operations with maintainable project structure for easy future development and scaling.
 
