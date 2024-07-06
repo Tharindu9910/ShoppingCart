@@ -8,15 +8,11 @@ const App: React.FC = () => {
 
     useEffect(() => {
         window.history.replaceState({ page }, '');
-
-
         const handlePopState = (event) => {
             if (event.state && event.state.page) {
                 setPage(event.state.page);
             }
         }; window.addEventListener('popstate', handlePopState);
-
-
         return () => {
             window.removeEventListener('popstate', handlePopState);
         };
@@ -30,12 +26,12 @@ const App: React.FC = () => {
             case "shoppingCart":
                 return (<MyShoppingCart/>);
             default:
-                return <div>Page not found</div>;
+                return <div>Page not found</div>
         }
     };
     const navigate = (newPage) => {
         setPage(newPage);
-        window.history.pushState({ page: newPage }, '');
+        window.history.pushState({ page: newPage }, '',`/${page}`);
     };
 
     return (

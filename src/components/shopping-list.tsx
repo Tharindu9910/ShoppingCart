@@ -8,12 +8,11 @@ import Header from "./header";
 
 
 const ShoppingList: React.FC = () => {
-    const { loading, error, shoppingList, fetchData, reset } = useStore(useShallow((state) => ({
+    const { loading, error, shoppingList, fetchData } = useStore(useShallow((state) => ({
         loading: state.loading,
         error: state.error,
         shoppingList: state.shoppingList,
         fetchData: state.fetchData,
-        reset: state.reset,
     })));
 
     useEffect(() => {
